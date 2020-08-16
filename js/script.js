@@ -1,6 +1,8 @@
 "use strict";
-let numberOfFilms = prompt("Сколько фильмов вы уже посмотрели?", "");
-
+let numberOfFilms = "";
+while (!numberOfFilms || numberOfFilms.length > 50) {
+    numberOfFilms = prompt("Сколько фильмов вы уже посмотрели?", "");
+}
 let personMovieDB = {
     count: +numberOfFilms,
     movies: {},
@@ -8,12 +10,27 @@ let personMovieDB = {
     genres: [],
     privat: false
 };
+for (let i = 0; i < 2; i++) {
+    let lastFilm = "";
+    while (!lastFilm || lastFilm.length > 50) {
+        lastFilm = prompt("Один из последних фильмов?", "");
+    }
+    let rating = "";
 
-let lastFilm = prompt("Один из последних фильмов?", "");
-let rating = prompt("На сколько оцените его?", "");
-let lastFilm1 = prompt("Один из последних фильмов?", "");
-let rating1 = prompt("На сколько оцените его?", "");
+    while (!rating || rating.length > 50) {
+        rating = prompt("На сколько оцените его?", "");
+    }
 
-personMovieDB.movies[lastFilm] = rating;
-personMovieDB.movies[lastFilm1] = rating1;
+    personMovieDB.movies[lastFilm] = rating;
+}
 console.log(personMovieDB);
+
+if (personMovieDB.count <= 10) {
+    alert("Malo");
+} else if (personMovieDB.count > 10 && personMovieDB.count <= 30) {
+    alert("Norm");
+} else if (personMovieDB.count > 30) {
+    alert("Super!");
+} else {
+    alert("error");
+}
